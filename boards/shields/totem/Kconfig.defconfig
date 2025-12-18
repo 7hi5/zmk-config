@@ -1,34 +1,16 @@
 
 # SPDX-License-Identifier: MIT
 
-if SHIELD_TOTEM_LEFT
-
-config ZMK_KEYBOARD_NAME
-    default "TOTEM_L"
-
 config ZMK_SPLIT
     default y
+    depends on SHIELD_TOTEM_LEFT || SHIELD_TOTEM_RIGHT
 
+if SHIELD_TOTEM_LEFT
+    config ZMK_KEYBOARD_NAME
+        default "TOTEM_L"
 endif
 
 if SHIELD_TOTEM_RIGHT
-
-config ZMK_KEYBOARD_NAME
-    default "TOTEM_R"
-
-config ZMK_SPLIT
-    default y
-
-choice
-    prompt "Right side role"
-    default ZMK_SPLIT_ROLE_PERIPHERAL
-
-config ZMK_SPLIT_ROLE_CENTRAL
-    bool "Central"
-
-config ZMK_SPLIT_ROLE_PERIPHERAL
-    bool "Peripheral"
-
-endchoice
-
+    config ZMK_KEYBOARD_NAME
+        default "TOTEM_R"
 endif
