@@ -1,16 +1,16 @@
+if SHIELD_TOTEM_LEFT
 
-# SPDX-License-Identifier: MIT
+config ZMK_KEYBOARD_NAME
+    default "TOTEM"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_TOTEM_LEFT || SHIELD_TOTEM_RIGHT
 
 config ZMK_SPLIT
     default y
-    depends on SHIELD_TOTEM_LEFT || SHIELD_TOTEM_RIGHT
 
-if SHIELD_TOTEM_LEFT
-    config ZMK_KEYBOARD_NAME
-        default "TOTEM_L"
-endif
-
-if SHIELD_TOTEM_RIGHT
-    config ZMK_KEYBOARD_NAME
-        default "TOTEM_R"
 endif
