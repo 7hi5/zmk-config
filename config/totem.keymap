@@ -16,14 +16,9 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define BASE 0
-/* #define NAV  1 */
-/* #define SYM  2 */
-/* #define ADJ  3 */
-/* #define TVP1 4 */
-/* #define TVP2 5 */
 #define LAY1  1
 #define LAY2  2
-#define LAY3  3
+#define ADJ  3
 
 &mt {
   quick-tap-ms = <100>;
@@ -48,6 +43,7 @@
     };
 
     macros {
+        /*
         gif: gif {
             label = "giphy";
             compatible = "zmk,behavior-macro";
@@ -59,6 +55,7 @@
                 , <&macro_tap &kp G &kp I &kp F>
                 ;
         };
+        */
     };
 
         keymap {
@@ -81,11 +78,11 @@ label= "BASE"                              ;
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &kp Q       &kp W       &kp E       &kp R        &kp T           &kp Y      &kp U       &kp I       &kp O       &kp P
-                &mt LCTRL A &mt LSHFT S &mt LALT D  &mt LGUI F   &kp G           &kp H      &mt RGUI J  &mt RALT K  &mt RSHFT L &mt RCTRL SEMI 
-    &kp TAB     &kp Z       &kp X       &kp C       &kp V        &kp B           &kp N      &kp M       &kp COMMA   &kp DOT     &kp FSLH   &kp APOS
-                                        &kp DEL     &lt LAY1 ESC &kp SPACE       &kp BSPC   &lt LAY2 ENTER &kp BSPC
-                        >;
+                &kp Q       &kp W       &kp E       &kp R        &kp T         &kp Y       &kp U       &kp I       &kp O       &kp P
+                &mt LCTRL A &mt LSHFT S &mt LALT D  &mt LGUI F   &kp G         &kp H       &mt RGUI J  &mt RALT K  &mt RSHFT L &mt RCTRL SEMI 
+    &kp TAB     &kp Z       &kp X       &kp C       &kp V        &kp B         &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp APOS
+                                        &kp DEL     &lt LAY1 ESC &kp SPACE     &kp BSPC    &lt LAY2 ENTER &kp EQUAL
+                        >
                 };
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -95,14 +92,13 @@ label= "BASE"                              ;
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 label= "LAY1"                              ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-
 bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
                 &kp N1     &kp N2     &kp N3      &kp N4     &kp N5            &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
                 &kp EXCL   &kp AT     &kp HASH    &kp DLLR   &kp PRCNT         &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp KP_PLUS
-    &trans      &kp TILDE  &kp UNDER  &kp MINUS   &kp BSLH   &kp PIPE          &trans      &kp KP_PLUS &kp EQUAL   &trans      &trans      &kp EQUAL      
-                                        &trans    &kp ESC    &trans            &trans      &mo LAY3    &trans      
+    &trans      &kp TILDE  &kp UNDER  &kp MINUS   &kp BSLH   &kp PIPE          &trans      &kp KP_PLUS &kp EQUAL   &trans      &trans      &kp EQUAL
+                                        &trans    &kp ESC    &trans            &trans      &mo ADJ     &trans
                         >;
                 };
 
@@ -111,15 +107,15 @@ bindings = <
 
                 sim_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "LAY2"                               ;
+label= "LAY2"                              ; 
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
                 &kp N1     &kp N2     &kp N3      &kp N4     &kp N5            &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
                 &kp EXCL   &kp AT     &kp HASH    &kp DLLR   &kp PRCNT         &kp CARET   &kp AMPS    &kp STAR    &kp LPAR    &kp RPAR
-    &trans      &kp TILDE  &kp UNDER  &kp MINUS   &kp BSLH   &kp PIPE          &kp GRAVE   &kp LBRC    &kp RBRC    &kp LBKT    &kp RBKT    &kp EQUAL      
-                                        &trans      &trans        &mo LAY3         &trans      &kp C_PP    &trans      
+    &trans      &kp TILDE  &kp UNDER  &kp MINUS   &kp BSLH   &kp PIPE          &kp GRAVE   &kp LBRC    &kp RBRC    &kp LBKT    &kp RBKT    &kp EQUAL
+                                        &trans      &trans   &mo ADJ           &trans      &kp C_PP    &trans
                         >;
                 };
 
@@ -128,15 +124,15 @@ label= "LAY2"                               ;
 
                 adjust_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "LAY3"                               ;
+label= "ADJ"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &sys_reset  &bt BT_CLR &out OUT_TOG &trans      &trans          &trans      &kp F7      &kp F8      &kp F9      &kp F12
-                &bootloader &bt BT_NXT  &trans      &trans      &trans          &trans      &kp F4      &kp F5      &kp F6      &kp F11  
-    &trans      &trans      &bt BT_PRV  &trans      &trans      &trans          &trans      &kp F1      &kp F2      &kp F3      &kp F10     &trans         
-                                        &trans      &trans      &trans          &trans      &trans      &trans      
+                &sys_reset  &bt BT_CLR &out OUT_TOG &trans      &trans         &trans      &kp F7      &kp F8      &kp F9      &kp F12
+                &bootloader &bt BT_NXT  &trans      &trans      &trans         &trans      &kp F4      &kp F5      &kp F6      &kp F11
+    &trans      &trans      &bt BT_PRV  &trans      &trans      &trans         &trans      &kp F1      &kp F2      &kp F3      &kp F10     &trans
+                                        &trans      &trans      &trans         &trans      &trans      &trans
                         >;
                 };
         };
