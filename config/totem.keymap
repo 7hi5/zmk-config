@@ -82,7 +82,7 @@ label= "BASE"                              ;
                 &mt LCTRL A &mt LSHFT S &mt LALT D  &mt LGUI F   &kp G         &kp H       &mt RGUI J  &mt RALT K  &mt RSHFT L &mt RCTRL SEMI 
     &kp TAB     &kp Z       &kp X       &kp C       &kp V        &kp B         &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp APOS
                                         &kp DEL     &lt LAY1 ESC &kp SPACE     &kp BSPC    &lt LAY2 ENTER &kp EQUAL
-                        >
+                        >;
                 };
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
