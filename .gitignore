@@ -1,7 +1,7 @@
 build/
 optional/
-.zmk/
 zephyr/
 zmk/
 modules/
+.zmk/
 .west/
