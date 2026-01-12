@@ -59,28 +59,20 @@
         hold-trigger-on-release;
       };
     };
-
-     combos {
+    combos {
       compatible = "zmk,combos";
       combo_caps_word {
         timeout-ms = <50>;
-        key-positions = <20 31>; // Corresponds to TAB and APOS
+        key-positions = <20 31>; // TAB+APOS
         bindings = <&caps_word>;
       };
       combo_esc {
         timeout-ms = <50>;
-        key-positions = <0 1>; // Corresponds to Q and W
+        key-positions = <0 1>; // Q+W
         bindings = <&kp ESC>;
       };
     };
 
-    keymap {
-            compatible = "zmk,keymap";
-
-                base_layer {
-// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "BASE"                              ;
-// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃     Q     ┃     W     ┃     E     ┃     R     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     P     ┃     O     ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
@@ -90,82 +82,62 @@ label= "BASE"                              ;
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃           ┃    ESC    ┃    SPC    ┃   ┃   BSPC    ┃   ENTER   ┃           ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
- bindings = <
-// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
+    keymap {
+      compatible = "zmk,keymap";
+      base_layer {
+        label= "BASE";
+        bindings = <
+// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
                &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
                &hml LCTRL A &hml LSHFT S &hml LALT D &hml LGUI F &kp G         &kp H       &hmr RGUI J &hmr RALT K &hmr RSHFT L &hmr RCTRL SEMI
     &kp TAB    &kp Z       &kp X       &kp C       &kp V        &kp B          &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp APOS
                                        &kp LGUI    &lt LAY1 ESC &kp SPACE      &kp BSPC    &lt LAY2 ENTER &kp RGUI
-                        >;
-                };
+        >;
+      };
 
-// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-
-                nav_layer {
-// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "LAY1"                              ;
-// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-bindings = <
+      nav_layer {
+        label= "LAY1";
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-
                 &kp N1     &kp N2     &kp N3      &kp N4     &kp N5            &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
                 &kp EXCL   &kp AT     &kp HASH    &kp DLLR   &kp PRCNT         &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp KP_PLUS
     &trans      &kp TILDE  &kp UNDER  &kp MINUS   &kp BSLH   &kp PIPE          &trans      &kp KP_PLUS &kp EQUAL   &trans      &trans      &kp EQUAL
-                                        &trans    &kp ESC    &trans            &trans      &mo ADJ     &to GAME
-                        >;
-                };
+                                      &trans      &kp ESC    &trans            &trans      &mo ADJ     &to GAME
+        >;
+      };
 
-// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-
-                sim_layer {
-// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "LAY2"                              ; 
-// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
- bindings = <
+      sim_layer {
+        label= "LAY2"; 
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-
                 &kp N1     &kp N2     &kp N3      &kp N4     &kp N5            &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
                 &kp EXCL   &kp AT     &kp HASH    &kp DLLR   &kp PRCNT         &kp CARET   &kp AMPS    &kp STAR    &kp LPAR    &kp RPAR
     &trans      &kp TILDE  &kp UNDER  &kp MINUS   &kp BSLH   &kp PIPE          &kp GRAVE   &kp LBRC    &kp RBRC    &kp LBKT    &kp RBKT    &kp EQUAL
-                                      &trans      &trans   &mo ADJ           &trans      &kp C_PP    &trans
-                        >;
-                };
+                                      &trans      &mo ADJ    &trans            &trans      &trans      &trans
+        >;
+      };
 
-// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-
-                adjust_layer {
-// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "ADJ"                               ;
-// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
- bindings = <
+      adjust_layer {
+        label= "ADJ";
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-
                 &sys_reset  &bt BT_CLR &out OUT_TOG &trans      &trans         &trans      &kp F7      &kp F8      &kp F9      &kp F12
                 &bootloader &bt BT_NXT  &trans      &trans      &trans         &trans      &kp F4      &kp F5      &kp F6      &kp F11
     &trans      &trans      &bt BT_PRV  &trans      &trans      &trans         &trans      &kp F1      &kp F2      &kp F3      &kp F10     &trans
                                         &trans      &trans      &trans         &trans      &trans      &trans
-                        >;
-                };
+        >;
+      };
 
-// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-
-                game_layer {
-// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "GAME"                               ;
-// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
- bindings = <
+      game_layer {
+        label= "GAME";
+        bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-
-                &trans     &trans      &kp W       &trans      &trans          &trans      &trans      &trans      &trans      &trans
-                &kp LSHFT  &kp A       &kp S       &kp D       &trans          &trans      &kp X       &kp Y       &trans      &kp RSHFT
-    &kp TAB     &kp LCTRL  &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &kp RCTRL   &trans
-                                       &kp ESC     &trans      &kp SPACE       &kp BSPC    &kp ENTER   &to BASE
-                        >;
-                };
-        };
+                &none      &none       &kp W       &none       &none           &none       &none       &none       &none       &none
+                &kp LSHFT  &kp A       &kp S       &kp D       &none           &none       &kp X       &kp Y       &none       &kp RSHFT
+    &kp TAB     &kp LCTRL  &none       &none       &none        &none          &none       &none       &none       &none       &kp RCTRL   &none
+                                       &kp ESC     &none       &kp SPACE       &kp BSPC    &kp ENTER   &to BASE
+        >;
+      };
+    };
 };
