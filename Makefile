@@ -2,7 +2,7 @@ BOARD ?= xiao_ble
 SHIELD_LEFT ?= totem_left
 SHIELD_RIGHT ?= totem_right
 ZMK_CONFIG_PATH ?= $(shell pwd)
-FLASH_DRIVE_PATH ?= /run/media/tong/XIAO-SENSE
+FLASH_DRIVE_PATH ?= /run/media/$(USER)/XIAO-SENSE
 ZEPHYR_BASE ?= $(shell pwd)/zephyr
 
 .PHONY: all clean install-left install-right $(SHIELD_LEFT) $(SHIELD_RIGHT)
