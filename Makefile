@@ -5,7 +5,7 @@ ZMK_CONFIG_PATH ?= $(shell pwd)
 FLASH_DRIVE_PATH ?= /run/media/$(USER)/XIAO-SENSE
 ZEPHYR_BASE ?= $(shell pwd)/zephyr
 
-.PHONY: all clean install-left install-right $(SHIELD_LEFT) $(SHIELD_RIGHT)
+.PHONY: all clean setup install-left install-right $(SHIELD_LEFT) $(SHIELD_RIGHT)
 
 all: $(SHIELD_LEFT) $(SHIELD_RIGHT)
 
@@ -23,6 +23,10 @@ install-left: build/$(SHIELD_LEFT)/zephyr/zmk.uf2
 
 install-right: build/$(SHIELD_RIGHT)/zephyr/zmk.uf2
 	cp $< $(FLASH_DRIVE_PATH)/
+
+setup:
+	west init -l config/
+	west update
 
 clean:
 	rm -rf build
