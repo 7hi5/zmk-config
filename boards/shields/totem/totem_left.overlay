@@ -1,4 +1,4 @@
-#include "totem.dtsi" // The shared dtsi file is included in the overlay
+#include "totem.dtsi"
 
 // Label of the kscan node in the dtsi
 &kscan0 {

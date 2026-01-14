@@ -1,4 +1,4 @@
-#include "totem.dtsi" // The shared dtsi file is included in the overlay
+#include "totem.dtsi"
 
 &default_transform {
     col-offset = <5>;
