@@ -1,143 +1,105 @@
+//
+//                                                        ▀▀▀▀▀     ▀▀▀▀▀          ▀▀█▀▀
+//                                                        ▄▀▀▀▄  ▄  ▄▀▀▀▄  ▄  ▄▀▀▀▄  █  ▄▀▀▀▄
+//                                                        █   █  █  █   █  █  █   █  █  █   █
+//                                                         ▀▀▀   █   ▀▀▀   █   ▀▀▀   ▀   ▀▀▀
+//                                                               █      ▄▄▄█▄▄▄    █   █  
+//                                                               ▀      █  █  █     █▄█
+//                                                             ▀▀▀▀▀    █  █  █      ▀
+//                                                                      ▀  ▀  ▀
+//
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/ext_power.h>
 
-#define BASE  0
-#define LAY1  1
-#define LAY2  2
-#define ADJ   3
-#define GAME  4
+#define Base            0
+#define Sym             1
+#define Nav             2
+#define Adjust          3
 
-#define TAP_TIMEOUT 170
-#define QUICK_TAP_MS 100
+&sk {
+    release-after-ms = <1000>;
+    quick-release;
+};
 
-#define KEYS_L 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 25 32 33 34
-#define KEYS_R 5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31 35 36 37
-
-&mt {
-  flavor = "tap-preferred";
-  global-quick-tap;
-  quick-tap-ms = <QUICK_TAP_MS>;
-  tapping-term-ms = <TAP_TIMEOUT>;
+&caps_word {
+    continue-list = <UNDERSCORE MINUS BSPC>;
 };
 
 / {
-    behaviors {
-      hm: homerow_mods {
-        compatible = "zmk,behavior-hold-tap";
-        label = "homerow mods";
-        #binding-cells = <2>;
-        flavor = "balanced";
-        tapping-term-ms = <TAP_TIMEOUT>;
-        quick-tap-ms = <QUICK_TAP_MS>;
-        require-prior-idle-ms = <75>;
-        bindings = <&kp>, <&kp>;
-      };
-      hml: homerow_mods_left {
-        compatible = "zmk,behavior-hold-tap";
-        label = "homerow mods left";
-        #binding-cells = <2>;
-        flavor = "balanced";
-        tapping-term-ms = <TAP_TIMEOUT>;
-        quick-tap-ms = <QUICK_TAP_MS>;
-        require-prior-idle-ms = <75>;
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <KEYS_R>;
-        hold-trigger-on-release;
-      };
-      hmr: homerow_mods_right {
-        compatible = "zmk,behavior-hold-tap";
-        label = "homerow mods right";
-        #binding-cells = <2>;
-        flavor = "balanced";
-        tapping-term-ms = <TAP_TIMEOUT>;
-        quick-tap-ms = <QUICK_TAP_MS>;
-        require-prior-idle-ms = <75>;
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <KEYS_L>;
-        hold-trigger-on-release;
-      };
-    };
-    combos {
-      compatible = "zmk,combos";
-      combo_caps_word {
-        timeout-ms = <50>;
-        key-positions = <20 31>; // TAB+APOS
-        bindings = <&caps_word>;
-      };
-      combo_esc {
-        timeout-ms = <50>;
-        key-positions = <0 1>; // Q+W
-        bindings = <&kp ESC>;
-      };
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
     };
 
-//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃     Q     ┃     W     ┃     E     ┃     R     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     P     ┃     O     ┃
-//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃     A     ┃     S     ┃     D     ┃     F     ┃     G     ┃   ┃     H     ┃     J     ┃     K     ┃     L     ┃     ;     ┃
-// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃     TAB   ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     M     ┃     N     ┃     ,     ┃     .     ┃     /     ┃     '     ┃
-// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃           ┃    ESC    ┃    SPC    ┃   ┃   BSPC    ┃   ENTER   ┃           ┃
-//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+    //               0   1   2   3   4                   5   6   7   8   9
+    //               10  11  12  13  14                  15  16  17  18  19
+    //           20  21  22  23  24  25                  26  27  28  29  30  31
+    //                       32  33  34                  35  36  37
 
     keymap {
-      compatible = "zmk,keymap";
-      base_layer {
-        label= "BASE";
-        bindings = <
-// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-               &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
-               &hml LCTRL A &hml LSHFT S &hml LALT D &hml LGUI F &kp G         &kp H       &hmr RGUI J &hmr RALT K &hmr RSHFT L &hmr RCTRL SEMI
-    &kp TAB    &kp Z       &kp X       &kp C       &kp V        &kp B          &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp APOS
-                                       &kp LGUI    &lt LAY1 ESC &kp SPACE      &kp BSPC    &lt LAY2 ENTER &kp RGUI
-        >;
-      };
+        compatible = "zmk,keymap";
 
-      nav_layer {
-        label= "LAY1";
-        bindings = <
-// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                &kp N1     &kp N2     &kp N3      &kp N4     &kp N5            &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
-                &kp EXCL   &kp AT     &kp HASH    &kp DLLR   &kp PRCNT         &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp KP_PLUS
-    &trans      &kp TILDE  &kp UNDER  &kp MINUS   &kp BSLH   &kp PIPE          &trans      &kp KP_PLUS &kp EQUAL   &trans      &trans      &kp EQUAL
-                                      &trans      &kp ESC    &trans            &trans      &mo ADJ     &to GAME
-        >;
-      };
+        // Staandard QWERTY layout with layers for Symbols, Navigation, and Adjust functions
+        // left thumb switches to symbol layer, right thumb switches to navigation layer
+        // Edge keys are Esc and single quote
 
-      sim_layer {
-        label= "LAY2"; 
-        bindings = <
-// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                &kp N1     &kp N2     &kp N3      &kp N4     &kp N5            &kp N6      &kp N7      &kp N8      &kp N9      &kp N0
-                &kp EXCL   &kp AT     &kp HASH    &kp DLLR   &kp PRCNT         &kp CARET   &kp AMPS    &kp STAR    &kp LPAR    &kp RPAR
-    &trans      &kp TILDE  &kp UNDER  &kp MINUS   &kp BSLH   &kp PIPE          &kp GRAVE   &kp LBRC    &kp RBRC    &kp LBKT    &kp RBKT    &kp EQUAL
-                                      &trans      &mo ADJ    &trans            &trans      &trans      &trans
-        >;
-      };
+        Base {
+            label = "Base";
+            bindings = <
+                     &kp Q  &kp W  &kp E     &kp R    &kp T                      &kp Y      &kp U    &kp I      &kp O    &kp P
+                     &kp A  &kp S  &kp D     &kp F    &kp G                      &kp H      &kp J    &kp K      &kp L    &kp SEMI
+            &kp ESC  &kp Z  &kp X  &kp C     &kp V    &kp B                      &kp N      &kp M    &kp COMMA  &kp DOT  &kp SLASH  &kp SQT 
+                                   &kp BSPC  &mo Sym  &kp LSHFT                  &kp SPACE  &mo Nav  &kp RET
+            >;
+        };
 
-      adjust_layer {
-        label= "ADJ";
-        bindings = <
-// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                &sys_reset  &bt BT_CLR &out OUT_TOG &trans      &trans         &trans      &kp F7      &kp F8      &kp F9      &kp F12
-                &bootloader &bt BT_NXT  &trans      &trans      &trans         &trans      &kp F4      &kp F5      &kp F6      &kp F11
-    &trans      &trans      &bt BT_PRV  &trans      &trans      &trans         &trans      &kp F1      &kp F2      &kp F3      &kp F10     &trans
-                                        &trans      &trans      &trans         &trans      &trans      &trans
-        >;
-      };
+        // Symbol layer. First row has brackets and comparison operators
+        // Home row has shift, alt, gui, ctrl, equal, tilde, and scroll up/down (a little nav spillover)
+        // Central columns have &, @, =, ~, = and ^
+        // Bottom row has tab, hash, pipe, star, minus, plus, caret, backslash, dollar, exclamaion, percent, grave
+        Sym {
+            label = "Sym";
+            bindings = <
+                          &kp LT     &kp LBKT  &kp LBRC  &kp LPAR   &kp AMPS         &kp AT     &kp  RPAR      &kp  RBRC    &kp RBKT  &kp GT
+                          &sk LSHFT  &sk LALT  &sk LGUI  &sk LCTRL  &kp EQUAL        &kp TILDE  &msc SCRL_DOWN &msc SCRL_UP &none     &none
+            &kp LG(Z)     &kp HASH   &kp PIPE  &kp STAR  &kp MINUS  &kp PLUS         &kp CARET  &kp  BSLH      &kp  DLLR    &kp EXCL  &kp PRCNT  &kp GRAVE
+                                               &kp DEL   &none      &none            &kp SPACE  &mo  Nav       &kp  LG(RET)
+            >;
+        };
 
-      game_layer {
-        label= "GAME";
-        bindings = <
-// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-                &none      &none       &kp W       &none       &none           &none       &none       &none       &none       &none
-                &kp LSHFT  &kp A       &kp S       &kp D       &none           &none       &kp X       &kp Y       &none       &kp RSHFT
-    &kp TAB     &kp LCTRL  &none       &none       &none        &none          &none       &none       &none       &none       &kp RCTRL   &none
-                                       &kp ESC     &none       &kp SPACE       &kp BSPC    &kp ENTER   &to BASE
-        >;
-      };
+        // Navigation layer. Arrow keys on home row, mouse movement and clicking/scrolling on the left hand
+        // Underscore lives here to be shiftable from the symbol layer
+        // Extra modifiers on the top right row, and number pad on the bottom row
+
+        Nav {
+            label = "Nav";
+            bindings = <
+                    &kp LSHFT      &mkp RCLK      &mmv MOVE_UP   &mkp LCLK       &none                &kp DEL  &sk RCTRL  &sk RGUI  &sk RALT   &sk RSHFT
+                    &msc SCRL_LEFT &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &msc SCRL_RIGHT      &kp LEFT &kp DOWN   &kp UP    &kp RIGHT  &kp UNDER
+            &kp TAB &kp N1         &kp N2         &kp N3         &kp N4          &kp N5               &kp N6   &kp N7     &kp N8    &kp N9     &kp N0     &kp MINUS
+                                                  &kp RGUI       &mo Sym         &kp RALT             &none    &none      &none
+            >;
+        };
+
+        // Adjust layer. Activated when both Symbol and Navigation layers are active
+        // Should have media controls on the top row and Bluetooth/power controls on the left
+
+        Adjust {
+            label = "Adjust";
+            bindings = <
+                      &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2  &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS &kp C_AC_DESKTOP_SHOW_ALL_APPLICATIONS        &kp C_PP  &kp C_VOL_DN    &kp C_VOL_UP  &kp C_MUTE      &kp C_NEXT
+                      &bt BT_CLR    &studio_unlock &none         &none                             &caps_word                                    &kp HOME  &kp PG_DN       &kp PG_UP     &kp END         &kp INS
+            &kp F12   &kp F1        &kp F2         &kp F3        &kp F4                            &kp F5                                        &kp F6    &kp F7          &kp F8        &kp F9          &kp F10     &kp F11
+                                                   &none         &none                             &none                                         &none     &none           &none
+            >;
+        };
     };
 };
