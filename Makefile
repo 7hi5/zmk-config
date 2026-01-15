@@ -11,6 +11,7 @@ FLASH_DRIVE_PATH ?= /run/media/$(USER)/XIAO-SENSE
 all: build/$(SHIELD_LEFT)/zephyr/zmk.uf2 build/$(SHIELD_RIGHT)/zephyr/zmk.uf2
 
 build/%/zephyr/zmk.uf2:
+	. .env/bin/activate && \
 	export ZEPHYR_BASE=$(ZEPHYR_BASE) && west build -s zmk/app -b $(BOARD) -d build/$* -- -DSHIELD=$* -DZMK_CONFIG=$(ZMK_CONFIG_PATH) -DZEPHYR_BASE=$(ZEPHYR_BASE) -DZephyr_DIR=$(ZEPHYR_BASE)/share/zephyr-package/cmake -DCONFIG_ZMK_STUDIO=y
 
 install-left: build/$(SHIELD_LEFT)/zephyr/zmk.uf2
@@ -20,9 +21,11 @@ install-right: build/$(SHIELD_RIGHT)/zephyr/zmk.uf2
 	cp $< $(FLASH_DRIVE_PATH)/
 
 setup:
-	python -m venv .env
-	./.env/bin/pip install protobuf grpcio-tools
-	west init -l config/
+	test -d .env || python -m venv .env
+	. .env/bin/activate && \
+	pip install --upgrade pip && \
+	pip install protobuf grpcio-tools && \
+	(test -d .west || west init -l config/) && \
 	west update
 
 clean:
